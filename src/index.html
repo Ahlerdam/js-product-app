@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--boostrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--css animated-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Product app</title>
+    <title>Aplicacion de productos</title>
 </head>
 <body>
         <header class="container">
@@ -18,7 +21,7 @@
                     </div>
                 </div>
     </header>
-    <div class="container">
+    <div class="container" id="nav">
         <nav class="navbar navbar-light bg-info">
             <a href="/" class="navbar-brand text-light">
             Aplicacion de productos
@@ -26,9 +29,9 @@
         </nav>
     </div>
 
-    <div class="container">
+    <div class="container" id="appContainer">
         <div id="App" class="row mt-5">
-            <div class="col-md-4">
+            <div class="col-md-4 animated flipInY">
                 <div class="card">
                     <div class="card-header bg-info">
                         <h4 class="text-light">
@@ -37,13 +40,13 @@
                     </div>
                     <form id="form-product" class="card-body">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Product Name" class="form-control">
+                            <input type="text" id="name" placeholder="Nombre de producto" class="form-control">
                         </div>
                         <div class="form-group">
-                                <input type="number" step="0.01" id="price" placeholder="Product Price" class="form-control">
+                                <input type="number" step="0.01" id="price" placeholder="Precio del producto" class="form-control">
                             </div>
                         <div class="form-group">
-                            <input type="number" id="year" placeholder="Year" class="form-control">
+                            <input type="number" id="year" placeholder="Año" class="form-control">
                         </div>
                         <input type="submit" value="Agregar" id="Add" class="btn btn-danger btn-block">
                     </form>

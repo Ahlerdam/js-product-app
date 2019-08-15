@@ -16,9 +16,10 @@ class UI
         element.innerHTML = 
         `<div class="card text-center mb-4">
             <div class="card-body">
-                <strong> Product Name </strong>: ${product.name}
-                <strong> Product Price </strong>: ${product.price}
-                <strong> Product year </strong>: ${product.year}
+                <strong> Nombre de producto </strong>: ${product.name}
+                <strong> Precio </strong>: ${product.price}
+                <strong> Año </strong>: ${product.year}
+                <a href="#" class="btn btn-danger ml-5" name="delete">Borrar</a>
             </div>
         </div>
         `
@@ -26,19 +27,41 @@ class UI
         productList.appendChild(element);
         
     }
-
-    deleteProduct ()
+    resetForm()
     {
+        document.getElementById("form-product").reset();
+    }
+
+    deleteProduct(element)
+    {
+        if(element.name === "delete") 
+        {
+            element.parentElement.parentElement.parentElement.remove();
+
+        }
+
 
     }
 
-    showMessage()
+    showMessage(message, cssClass)
     {
+        const div = document.createElement("div");
+        div.className = `alert alert-${cssClass}`;
+        div.appendChild(document.createTextNode(message));
+        //show in DOM 
+        const container = document.querySelector("#appContainer");
+        const app = document.querySelector("#App");
+        container.insertBefore(div, app);
 
+        //time
+        setTimeout(() => {
+            document.querySelector(".alert").remove();
+        }, 2000);
     }
 }
 
 //DOM Events
+//Add product 
 document.getElementById("form-product").addEventListener("submit", function(e){
     const name = document.getElementById("name").value;
     const price = document.getElementById("price").value;
@@ -46,7 +69,15 @@ document.getElementById("form-product").addEventListener("submit", function(e){
     const product = new Product(name,price,year);
 
     const iu = new UI();
-    iu.addProduct(product);
-
+    iu.addProduct(product, "animated rollOut");
+    iu.resetForm();
+    iu.showMessage("Producto agregado satisfactoriamente", "success");
     e.preventDefault();
 });
+
+//Delete product
+document.getElementById("product-list").addEventListener("click", (e) => {
+    const ui = new UI();
+    ui.deleteProduct(e.target);
+    ui.showMessage("Producto eliminado", "danger");
+})
